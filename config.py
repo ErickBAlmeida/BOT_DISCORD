@@ -1,4 +1,4 @@
-class Canais:
+class TextChannel:
     Bem_vindo = None
     Diretoria = None
 
