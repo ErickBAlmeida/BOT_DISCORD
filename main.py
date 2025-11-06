@@ -4,7 +4,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 load_dotenv("private/.env")
 
-from config import Canais, VoiceChannels
+from config import TextChannel, VoiceChannels
 
 intents = discord.Intents.all()
 bot = commands.Bot(".", intents=intents)
@@ -23,7 +23,7 @@ async def ola(ctx:commands.Context):
 
 @bot.event
 async def on_member_join(membro:discord.Member):
-    canal = Canais.Bem_vindo
+    canal = TextChannel.Bem_vindo
     await canal.send(f"🎣 BAGRE FISGADO!!! {membro.mention} acabou de entrar no servidor!!")
 
 @bot.event
@@ -32,12 +32,12 @@ async def on_voice_state_update(member, before, after):
         canal = after.channel
         if canal.id == VoiceChannels.Diretoria.id:
             if len(canal.members) == 1:
-                await Canais.Diretoria.send(f"@everyone 🎣 Hora da call 🎣")
+                await TextChannel.Diretoria.send(f"@everyone 🎣 Hora da call 🎣")
 
 @bot.event
 async def on_ready():
-    Canais.Bem_vindo = bot.get_channel(1431693927488032891)
-    Canais.Diretoria = bot.get_channel(1426320430607896666)
+    TextChannel.Bem_vindo = bot.get_channel(1431693927488032891)
+    TextChannel.Diretoria = bot.get_channel(1426320430607896666)
 
     VoiceChannels.Diretoria = bot.get_channel(1420576410983989248)
     print("✅ Bot inicializado com sucesso")
