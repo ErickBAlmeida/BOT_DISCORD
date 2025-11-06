@@ -4,7 +4,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 load_dotenv("private/.env")
 
-from config import Canais
+from config import Canais, VoiceChannels
 
 intents = discord.Intents.all()
 bot = commands.Bot(".", intents=intents)
@@ -19,11 +19,7 @@ async def ajuda(ctx:commands.Context):
 @bot.command()
 async def ola(ctx:commands.Context):
     nome = ctx.author.name
-
-    if nome == 'yrlz':
-        await ctx.reply("VAI TOMAR NO CU " + nome)
-    else: 
-        await ctx.reply(F"Opa, {nome}, bão?")
+    pass
 
 @bot.event
 async def on_member_join(membro:discord.Member):
@@ -34,17 +30,17 @@ async def on_member_join(membro:discord.Member):
 async def on_voice_state_update(member, before, after):
     if before.channel is None and after.channel is not None:
         canal = after.channel
-
-        if canal.id == 1420576410983989248:
+        if canal.id == VoiceChannels.Diretoria.id:
             if len(canal.members) == 1:
-                diretoria = Canais.Diretoria
-                await diretoria.send(f"@everyone hora da call")
+                await Canais.Diretoria.send(f"@everyone 🎣 Hora da call 🎣")
 
 @bot.event
 async def on_ready():
     Canais.Bem_vindo = bot.get_channel(1431693927488032891)
     Canais.Diretoria = bot.get_channel(1426320430607896666)
-    print("Bot inicializado!")
+
+    VoiceChannels.Diretoria = bot.get_channel(1420576410983989248)
+    print("✅ Bot inicializado com sucesso")
     
 
 bot.run(os.getenv("TOKEN"))
