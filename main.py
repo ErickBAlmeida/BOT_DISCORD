@@ -2,10 +2,9 @@ import os
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-load_dotenv("private/.env")
-
 from config import TextChannel, VoiceChannels
 
+load_dotenv("private/.env")
 intents = discord.Intents.all()
 bot = commands.Bot(".", intents=intents)
 
@@ -43,11 +42,14 @@ async def on_voice_state_update(member, before, after):
 
 @bot.event
 async def on_ready():
+    # Inicializando canais de texto
     TextChannel.Bem_vindo = bot.get_channel(1431693927488032891)
     TextChannel.Diretoria = bot.get_channel(1426320430607896666)
+    TextChannel.Testes = bot.get_channel(1436466164489523402)
 
+    # Inicializando canais de voz
     VoiceChannels.Diretoria = bot.get_channel(1420576410983989248)
-    print("✅ Bot inicializado com sucesso")
+    print("\n✅ Bot inicializado com sucesso")
     
 
 bot.run(os.getenv("TOKEN"))
