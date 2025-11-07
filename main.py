@@ -9,6 +9,7 @@ from config import TextChannel, VoiceChannels
 intents = discord.Intents.all()
 bot = commands.Bot(".", intents=intents)
 
+" ======================= COMANDOS ======================= "
 @bot.command()
 async def ajuda(ctx:commands.Context):
     await ctx.reply(f""" Lista de comandos:
@@ -19,8 +20,11 @@ async def ajuda(ctx:commands.Context):
 @bot.command()
 async def ola(ctx:commands.Context):
     nome = ctx.author.name
-    pass
+    await ctx.reply(f"Olá, {nome}! 🎣")
 
+
+
+" ======================= EVENTOS ======================= "
 @bot.event
 async def on_member_join(membro:discord.Member):
     canal = TextChannel.Bem_vindo
@@ -33,6 +37,9 @@ async def on_voice_state_update(member, before, after):
         if canal.id == VoiceChannels.Diretoria.id:
             if len(canal.members) == 1:
                 await TextChannel.Diretoria.send(f"@everyone 🎣 Hora da call 🎣")
+
+
+
 
 @bot.event
 async def on_ready():
