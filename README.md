@@ -13,19 +13,17 @@ Um robô simples para gerenciar e interagir com usuários de um servidor de Disc
 - `.ajuda` - Mostra a lista de comandos disponíveis
 - `.ola` - O bot te cumprimenta com seu nome
 
-## Estrutura do Projeto
-
-- `main.py` - Arquivo principal com a lógica do bot
-- `config.py` - Configurações dos canais de texto e voz
-- `private/.env` - Arquivo de configuração com o token do bot (não incluído no repositório)
-
 ## Como Executar
 
 1. Certifique-se de ter todas as dependências instaladas
 2. Configure o arquivo `.env` com o token do seu bot
-3. Execute o bot:
+3. Execute o comando de sincronização de ambiente e bibliotecas:
    ```powershell
-   python main.py
+   uv sync
+   ```
+4. Execute o bot:
+   ```powershell
+   uv run python main.py
    ```
 
 ## Características do Bot
