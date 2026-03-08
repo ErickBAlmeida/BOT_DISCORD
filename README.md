@@ -23,7 +23,7 @@ Um robô simples para gerenciar e interagir com usuários de um servidor de Disc
    ```
 4. Execute o bot:
    ```powershell
-   uv run python main.py
+   uv run python src/main.py
    ```
 
 ## Características do Bot
